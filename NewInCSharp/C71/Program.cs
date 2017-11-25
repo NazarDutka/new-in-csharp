@@ -17,6 +17,7 @@ namespace C71
             foreach (var item in results)
             {
                 WriteLine($"Fib {item.input} = {await item.task}");
+                await PostAsync($"Fib {item.input} = {await item.task}");
             }
             ReadLine();
         }
@@ -31,6 +32,11 @@ namespace C71
                 var (c, p) = Fib(i - 1);
                 return (c + p, c);
             }
+        }
+        public static async Task PostAsync(string s, CancellationToken token = default)
+        //public static async Task PostAsync(string s, CancellationToken token = default(CancellationToken))
+        {
+
         }
     }
 }
