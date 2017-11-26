@@ -43,5 +43,11 @@
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\C72\C72.csproj">
+      <Project>{185024e4-deee-47b4-97b5-e3f82888f0a2}</Project>
+      <Name>C72</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
