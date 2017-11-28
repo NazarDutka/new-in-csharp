@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 using static System.Math;
 
 namespace C72
@@ -16,6 +18,33 @@ namespace C72
             var distanse = A.Distase(in B);
 
             Console.ReadLine();
+        }
+
+        static async Task<bool> DoStaffAsync(Memory<char> memory, StreamReader reader)
+        {
+            var count = await reader.ReadAsync(memory);
+            return DoStaff(memory.Span.Slise(0, count));
+        }
+
+        static bool DoStaff(ReadOnlySpan<char> value)
+        {
+            if (value.Length==0)
+            {
+                return false;
+            }
+            if (char.IsNumber( value[0]))
+            {
+                return false;
+            }
+            for (int i = 0; i < value.Length; i++)
+            {
+                var c = value[i];
+                if (!(char.IsLetterOrDigit(c)||c=='_'))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         public static ref readonly Asteroid Nearest(in Point p, in Asteroid a1, in Asteroid a2)
         //public static ref Asteroid Nearest(ref Point p, ref Asteroid a1, ref Asteroid a2)
